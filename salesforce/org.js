@@ -2,7 +2,7 @@ const nforce = require('nforce')
 const config = require('./config')
 const api = require('../api')
 
-// var oauth // how should I use this?
+// var oauth // don't need this in 'single' user mode
 
 var org = nforce.createConnection({
   environment: 'sandbox',
