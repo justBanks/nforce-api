@@ -1,6 +1,5 @@
 const nforce = require('nforce')
 const org = require('./org')
-const api = require('../api')
 
 module.exports = {
   insert: insert,
