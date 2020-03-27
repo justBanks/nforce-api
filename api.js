@@ -1,5 +1,6 @@
 const express = require('express')
 const contacts = require('./salesforce/contacts')
+const leads = require('./salesforce/leads')
 
 const app = express()
 app.use(express.json({ type: 'application/json' })) // this type: is required by body-parser
@@ -42,6 +43,15 @@ app.post("/api/contacts", function(req, res) {
     return
   }
   contacts.insert(req.body, res)
+})
+
+app.post("/api/leads", function(req, res) {
+  if(JSON.stringify(req.body) == '{}') {
+    handleError(res, 400, 'Could not read the request payload.',
+                "Make sure the request has a Content-Type header for 'application/json'")
+    return
+  }
+  leads.insert(req.body, res)
 })
 
 //Generic error handler for use by all endpoints; Keeps this API from returning HTML error pages

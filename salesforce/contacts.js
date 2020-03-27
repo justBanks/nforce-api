@@ -11,9 +11,12 @@ function insert(newContact, res) {
   var sObject = nforce.createSObject('Contact', newContact)
 
   org.insert({ sobject: sObject }, function(err, resp) {
-    if(err) sendErrorResponse(res, err.statusCode, `--> Unable to insert Contact for ${newContact.FirstName} ${newContact.LastName}`, err.message)
-    console.log(`Contact inserted for ${newContact.FirstName} ${newContact.LastName} ` + JSON.stringify(resp))
-    res.status(201).json(resp)
+    if(err)
+      sendErrorResponse(res, err.statusCode, `--> Unable to insert Contact for ${newContact.FirstName} ${newContact.LastName}`, err.message)
+    else {
+      console.log(`Contact inserted for ${newContact.FirstName} ${newContact.LastName} ` + JSON.stringify(resp))
+      res.status(201).json(resp)
+    }
   })
 }
 
