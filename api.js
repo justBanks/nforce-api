@@ -46,13 +46,16 @@ app.route('/')
 
 app.route('/api/contacts')
   .get(function(req, res) {
-  // return SOQL query for the list
+    return contacts.get(res)
   })
   .post(function(req, res) {
     contacts.insert(req.body, res)
   })
 
 app.route('/api/leads')
+  .get(function(req, res) {
+    return leads.get(res)
+  })
   .post(function(req, res) {
     leads.insert(req.body, res)
   })

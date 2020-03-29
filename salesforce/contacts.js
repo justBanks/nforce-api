@@ -3,6 +3,18 @@ const org = require('./org')
 
 module.exports = {
   insert: insert,
+  get: get,
+}
+
+function get(res) {
+  let query = 'SELECT id, name, email, accountid FROM Contact'
+  org.query({ query: query }, function(err, resp) {
+    console.log(`GET request: ${JSON.stringify(query)}`)
+    if(err)
+      sendErrorResponse(res, err.statusCode, `--> Error occurred for query:\n ${JSON.stringify(query)}`, err.message)
+    else
+      res.status(200).json(resp)
+  })
 }
 
 function insert(newContact, res) {
